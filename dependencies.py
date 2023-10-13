@@ -10,9 +10,7 @@ STANDARD_RESIZE_VALUE = 300
 classifier_classes = {'minor': 0, 'moderate': 1, 'severe': 2}
 
 
-def collect_images_from_files(X, Y, resize_value = STANDARD_RESIZE_VALUE):
-    classifier_classes = {'minor': 0, 'moderate': 1, 'severe': 2}
-    
+def collect_images_from_files(X, Y, classifier_classes, resize_value = STANDARD_RESIZE_VALUE):
     for cls_class in classifier_classes:
         path = STANDARD_DATA_DIRECTORY_STRUCTURE + cls_class
         for file in os.listdir(path):
@@ -52,3 +50,9 @@ def scale_data_tests(xTrain, xTest):
     xTest = xTest / 255
     
     return xTrain, xTest
+
+
+def run_live_images_testing(classifier, image_show_series, new_image_resize_value):
+    test_based_on_images(classifier, 'minor/', image_show_series, new_image_resize_value)
+    test_based_on_images(classifier, 'moderate/', image_show_series, new_image_resize_value)
+    test_based_on_images(classifier, 'severe/', image_show_series, new_image_resize_value)

@@ -18,13 +18,11 @@ x_s = np.array(x_s)
 y_s = np.array(y_s)
 
 # Sklearn accepts only bidiomensional data, so we have to convert it
-
 xs_reshape = x_s.reshape(len(x_s), -1)
-xs_reshape.shape
 
 x_train, x_test, y_train, y_test = train_test_split(
-    xs_reshape, 
-    y_s, 
+    xs_reshape,
+    y_s,
     random_state=RANDOM_TRAINING_STATE,
     test_size=TEST_SIZE_PERCENTAGE
 )

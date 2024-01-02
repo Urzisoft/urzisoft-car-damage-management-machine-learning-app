@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
-STANDARD_DATA_DIRECTORY_STRUCTURE = 'dataset/validation/'
+STANDARD_DATA_DIRECTORY_STRUCTURE = 'dataset/training/'
 STANDARD_RESIZE_VALUE = 300
 classifier_classes = {'minor': 0, 'moderate': 1, 'severe': 2}
 
@@ -11,10 +11,13 @@ def collect_images_from_files(X, Y, classifier_classes, resize_value=STANDARD_RE
     for cls_class in classifier_classes:
         path = STANDARD_DATA_DIRECTORY_STRUCTURE + cls_class
         for file in os.listdir(path):
-            img = cv2.imread(path + '/' + file, 0)
-            img = cv2.resize(img, (resize_value, resize_value))
-            X.append(img)
-            Y.append(classifier_classes[cls_class])
+            if file != '.DS_Store':
+                img = cv2.imread(path + '/' + file, 0)
+                print(file)
+                print(img)
+                img = cv2.resize(img, (resize_value, resize_value))
+                X.append(img)
+                Y.append(classifier_classes[cls_class])
 
 
 def test_based_on_images(classifier, file_testing_class, size=9, resize_value=STANDARD_RESIZE_VALUE):
